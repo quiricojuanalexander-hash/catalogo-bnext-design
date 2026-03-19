@@ -12,7 +12,6 @@ import {
   Croissant, Cake, PawPrint, Church 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoBnext from './assets/logo-bnext.png';
 
 type SubCategory = {
   id: string;
@@ -35,6 +34,7 @@ const R2_BASE = 'https://pub-273a525c44c946388add7b34ab7cac51.r2.dev';
 const r2Url = (path: string) => `${R2_BASE}/${encodeURI(path)}`;
 const r2RestauranteFile = (filename: string) => r2Url(`restaurante/${filename}`);
 const r2LocalesFile = (filename: string) => r2Url(`locales/${filename}`);
+const LOGO_URL = r2Url('logo/logo Bnext.png');
 const CATEGORIES: Category[] = [
   { 
     id: 'restaurante', 
@@ -110,7 +110,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-accent/10 border border-border-subtle flex items-center justify-center shadow-[0_0_15px_rgba(255,77,0,0.25)] overflow-hidden">
               <img
-                src={logoBnext}
+                src={LOGO_URL}
                 alt="Bnext Design logo"
                 className="w-full h-full object-cover"
               />
