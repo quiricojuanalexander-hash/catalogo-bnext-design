@@ -12,6 +12,7 @@ import {
   Croissant, Cake, PawPrint, Church 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import logoBnext from './assets/logo-bnext.png';
 
 type SubCategory = {
   id: string;
@@ -107,10 +108,14 @@ export default function App() {
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border-subtle px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shadow-[0_0_15px_rgba(255,77,0,0.4)]">
-              <span className="font-display font-bold text-white text-lg leading-none">C</span>
+            <div className="w-10 h-10 rounded-full bg-accent/10 border border-border-subtle flex items-center justify-center shadow-[0_0_15px_rgba(255,77,0,0.25)] overflow-hidden">
+              <img
+                src={logoBnext}
+                alt="Bnext Design logo"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <span className="font-display font-bold text-xl tracking-wide">CloudCats</span>
+            <span className="font-display font-bold text-xl tracking-wide">Bnext Design</span>
           </div>
 
           <nav className="hidden sm:flex items-center gap-2 text-sm font-mono text-muted">
