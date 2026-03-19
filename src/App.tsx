@@ -28,34 +28,37 @@ type Category = {
   pdfUrl?: string;
 };
 
-// --- MOCK DATA ---
-// En un entorno real, estos PDFs vendrían de Cloudinary
+// --- DATA ---
+// PDFs servidos directamente desde R2 (sin descarga local)
+const R2_BASE = 'https://pub-273a525c44c946388add7b34ab7cac51.r2.dev';
+const r2Url = (path: string) => `${R2_BASE}/${encodeURI(path)}`;
+const r2RestauranteFile = (filename: string) => r2Url(`restaurante/${filename}`);
+const r2LocalesFile = (filename: string) => r2Url(`locales/${filename}`);
 const CATEGORIES: Category[] = [
   { 
     id: 'restaurante', 
     name: 'Restaurante', 
     icon: Utensils, 
     subcategories: [
-      { id: 'gen', name: 'General', flag: '🍽️', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'col', name: 'Colombiano', flag: '🇨🇴', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'chi', name: 'Chino', flag: '🇨🇳', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'ame', name: 'Americano', flag: '🇺🇸', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'ita', name: 'Italiano', flag: '🇮🇹', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'mex', name: 'Mexicano', flag: '🇲🇽', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'ven', name: 'Venezolano', flag: '🇻🇪', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'afr', name: 'Africano', flag: '🌍', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'ara', name: 'Árabe', flag: '🐪', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-      { id: 'hin', name: 'Hindú', flag: '🇮🇳', pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+      { id: 'chi', name: 'Chino', flag: '🇨🇳', pdfUrl: r2RestauranteFile('catalogo restaurantes Chino.pdf') },
+      { id: 'hin', name: 'Hindú', flag: '🇮🇳', pdfUrl: r2RestauranteFile('catalogo restaurantes HINDU.pdf') },
+      { id: 'ven', name: 'Venezolano', flag: '🇻🇪', pdfUrl: r2RestauranteFile('catalogo restaurantes Venezolanos.pdf') },
+      { id: 'ame', name: 'Americano', flag: '🇺🇸', pdfUrl: r2RestauranteFile('catalogo restaurantes americano.pdf') },
+      { id: 'ara', name: 'Árabe', flag: '🐪', pdfUrl: r2RestauranteFile('catalogo restaurantes arabe.pdf') },
+      { id: 'col', name: 'Colombiano', flag: '🇨🇴', pdfUrl: r2RestauranteFile('catalogo restaurantes colombianos.pdf') },
+      { id: 'mex', name: 'Mexicano', flag: '🇲🇽', pdfUrl: r2RestauranteFile('catalogo restaurantes mexicanos.pdf') },
     ]
   },
   { id: 'pizzeria', name: 'Pizzería', icon: Pizza, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
   { id: 'heladeria', name: 'Heladería', icon: IceCream, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-  { id: 'cafeteria', name: 'Cafetería', icon: Coffee, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-  { id: 'bar', name: 'Bar', icon: Wine, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-  { id: 'barberia', name: 'Barbería', icon: Scissors, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-  { id: 'farmacia', name: 'Farmacia', icon: Pill, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+  { id: 'cafeteria', name: 'Cafetería', icon: Coffee, pdfUrl: r2LocalesFile('catalogo cafetería.pdf') },
+  { id: 'bar', name: 'Bar', icon: Wine, pdfUrl: r2LocalesFile('catalogo Bar.pdf') },
+  { id: 'barberia', name: 'Barbería', icon: Scissors, pdfUrl: r2LocalesFile('catalogo barberia.pdf') },
+  { id: 'farmacia', name: 'Farmacia', icon: Pill, pdfUrl: r2LocalesFile('catalogo farmacia.pdf') },
+  { id: 'clinica-medica', name: 'Clínica médica', icon: Pill, pdfUrl: r2LocalesFile('catalogo Clinica médica.pdf') },
+  { id: 'clinica-dental', name: 'Clínica dental', icon: Pill, pdfUrl: r2LocalesFile('catalogo clinica dental.pdf') },
   { id: 'gimnasio', name: 'Gimnasio', icon: Dumbbell, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
-  { id: 'salon-belleza', name: 'Salón de belleza', icon: Sparkles, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+  { id: 'salon-belleza', name: 'Salón de belleza', icon: Sparkles, pdfUrl: r2LocalesFile('catalogo estetica.pdf') },
   { id: 'spa', name: 'Spa', icon: Flower2, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
   { id: 'tienda-ropa', name: 'Tienda de ropa', icon: Shirt, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
   { id: 'boutique', name: 'Boutique', icon: ShoppingBag, pdfUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
